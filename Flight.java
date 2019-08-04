@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Flight{
-    int childPassengers;
     int womenPassengers;
     int menPassengers;
     int childPassengers;
@@ -11,20 +10,20 @@ public class Flight{
     Pilot pilot;
     Pilot copilot;
 
-    public void Flight(Plane plane, Airport airport, Pilot pilot, Pilot copilot){
+    public Flight(Plane plane, Airport airport, Pilot pilot, Pilot copilot){
         this.plane = plane;
         this.airport = airport;
         this.pilot = pilot;
         this.copilot = copilot;
     }
 
-    public void getName(){
+    public String getName(){
         return this.plane.getModel() + " " + this.airport.getName();
     }
     public void setPassengers(){
-        askNumber("hombres");
-        askNumber("mujeres");
-        askNumber("ninos");
+        this.askNumber("hombres");
+        this.askNumber("mujeres");
+        this.askNumber("ninos");
     }
 
     public void showHigher(){
@@ -51,7 +50,7 @@ public class Flight{
         }
     }
 
-    private static askNumber(String type){
+    private void askNumber(String type){
         Scanner myScan = new Scanner(System.in);
         int n = Helpers.intPositiveInput(myScan, "Ingrese el numero de pasajeros " + type + " \n", "Ingrese un numero valido");
         if (type == "hombres"){
@@ -75,5 +74,9 @@ public class Flight{
         if (this.childPassengers > 7 && this.childPassengers < 16){
             System.out.println("Advertencia la cantidad de ninos fue  " + this.childPassengers + "\n");
         }
+    }
+
+    public void fly(){
+        System.out.println("Este es el mensaje de saludo del piloto " + pilot.getName() + " vamos a partir vuelo : " + this.getName() + "\n");
     }
 }
